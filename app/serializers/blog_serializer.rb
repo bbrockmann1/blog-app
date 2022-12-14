@@ -1,3 +1,3 @@
 class BlogSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :title, :content, :slug, :user_id, :review_id, :tag_id 
 end

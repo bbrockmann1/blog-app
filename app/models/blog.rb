@@ -1,7 +1,7 @@
 class Blog < ApplicationRecord
+    has_many :reviews, dependent: :destroy
     belongs_to :user
     belongs_to :tag
-    has_many :reviews, dependent: :destroy
     
     before_create :slugify
     def slugify
