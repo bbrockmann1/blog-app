@@ -15,7 +15,7 @@ puts "Seeding..."
                       content: Faker::Hipster.paragraph(sentence_count: 4),
                       user_id: rand(1..30),
                       review_id: rand(1..30),
-                      tag_id: rand()
+                      tag_id: rand(1..16)
 )}
 
 # Seeds for reviews.
@@ -23,7 +23,7 @@ puts "Seeding..."
                         comment: Faker::Hipster.sentence,
                         rating: rand(1..5),
                         blog_id: rand(1..50),
-                        user_id: rand(1..16)
+                        user_id: rand(1..30)
 )}
 
 # Seeds for tags.
