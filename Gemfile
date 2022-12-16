@@ -82,3 +82,5 @@ gem "faker", "~> 2.20"
 gem 'rack-cors'
 
 gem "active_model_serializers", "~> 0.10.12"
+
+gem 'friendly_id'
