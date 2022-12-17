@@ -1,83 +1,180 @@
 # Blog App
 
-Welcome to Blog App! Blog App is a full stack web application where users can sign up and write blogs. This is a full CRUD app using Rails version 
+Welcome to Blog App! Blog App is a full stack web application where users can sign up and write blogs. The backend is a full CRUD API using Rails version 7.0.4. The front end is written in JavaScript/React. This is my capstone project for Flatiron's Software Engineering course all written within three weeks.
+
+To run this on your locally on your machine run the following commands in the `blog-app` directory:
+
+* `bundle install`
+* `npm install --prefix client`
+* `rails db:create`
+* `rails db:migrate`
+* `rails db:seed`
 
 ## User Stories
 
-* As a user, I want to be able to create an account, so I can log in and use the app.
-* As a user, I want to be able to see my user info, so etc etc etc
-* As an editor, I want to be able to do an admin thing, so I can etc etc
-
-(Have one story for each feature you plan to include—even small features are great to list here, so feel free to get granular with it. You'll probably be making a new branch for each of these, right?)
+* Be signed up and can log in/log out.
+* Create, edit, and delete their own blog posts.
+* Add tags to a post.
+* Search for blog posts and tags.
+* Review other user’s blog posts.
 
 ## Models and Relationships
 
-This is a good place for a sweet diagram:
-
-![My Data Relationships](https://support.bizzdesign.com/download/attachments/39814141/worddav928fdea0a6b423e337e8814628445af4.png)
+![My Data Relationships](wireframes/database-structure.png)
 
 ### User
 
-A `User` has many `Pickles`, and so on and so forth
+A `User` has many `Blogs`, and a `User` has many tags through `Blogs`. A `User` has many `Reviews`.
 
 * id
-* username
-* password_digest
-* firstname
-* lastname
-* birthday
-* favorite color
+* first name 
+* last name
+* email
+* password
+* avatar 
 
-### Pickle
+### Post
 
-A `Pickle` belongs to a `User`, and so on 
+A `Blog` belongs to a `User`, a `Blog` belongs to a `Tag`, and a blog has many `Reviews`.
 
 * id
-* variety
-* weight
-* price
-* description
+* title
+* content
+* slug
+* user_id
+* review_id
+* tag_id
+
+### Review
+
+A `Review` belongs to a `Blog` and belongs to a `User`.
+
+* id
+* comment
+* rating
+* blog_id
+* user_id
+
+### Tag
+
+A `Tag` has many `Blogs` and a `Tag` has many users through `Blogs`.
+
+* id
+* category
 
 ## API
 
-Here's where you want to describe each API endpoint you're building/using. You can put this in your front end repo, your back end repo, or both.
+Find below a list of the most useful endpoints that can be used with the API.
 
-### GET /api/users
+### GET /api/blogs
 
-Returns a list of all users. Response JSON looks like this:
+Returns a list of all created blogs in the follwoing format
 
 ```json
-{ 
+{
   id: 111,
-  username: "johndoe",
-  firstname: "John",
-  lastname: "Doe",
-  etc: "etc"
+  content: "Blog post here",
+  user_id: 4
+  review_id: 7,
+  tag_id: 1
+}
+```
+
+### GET /api/blogs/:id
+
+Find a blog by id or by a parameterized slug. Titles are saved in the database as a slug and can be searched by entering the title in lowercase and words seperated by a dash ex. `http://localhost:3000/a-passage-to-india`
+
+### GET /api/reviews
+
+Returns a list off all reviews in the following format.
+
+```json
+{
+  id: 111,
+  comment: "Love the post! Looking forward to the next one!",
+  rating: 5,
+  blog_id: 7,
+  user_id: 1
+}
+```
+
+### POST /api/reviews
+
+Creates a new review for a blog. Send this data
+
+```json
+{
+    comment
+    rating (integer)
+    blog_id (integer)
+    user_id (integer)
+}
+```
+
+and sends back the follwoing data
+
+```json
+{
+  id: 111,
+  comment: "Love the post! Looking forward to the next one!",
+  rating: 5,
+  blog_id: 7,
+  user_id: 1
 }
 ```
 
 ### POST /api/users
 
-Creates a new user. Say more about that here. Send this data:
+Creates a new user. Emails and passwords must be unique. Passwords are salted and hashed. To create a new user submit the following attributes:
 
 ```json
-{ this is what it takes as data }
+{
+    first_name
+    last_name
+    email
+    password
+    avatar
+}
 ```
 
-And this is what it returns:
+This is what it returns:
 
 ```json
-{ this is what you get back }
+{
+  id: 111,
+  first_name: "Glen",
+  last_name: "Jacobs",
+  email: "caleb@wolf.co",
+  avatar: "https://robohash.org/quaeprovidentmagni.png?size=300x300&set=set1"
+}
+```
+
+### GET /api/tags
+
+Returns a list of all tags a user can assign to a blog.
+
+```json
+{
+    id: 1,
+    category: "Fashion"
+}
 ```
 
 ## Wireframe / Mockup
 
-Put your sweet wireframes and mockup images here. Probably only goes in the front end repo.
+### Homepage
+![Homepage](wireframes/homepage.png)
 
-![Wireframe](https://i2.wp.com/d1dlalugb0z2hd.cloudfront.net/handbooks/agile-handbook/wireframe/01-youtube-wireframe-example.png?resize=800%2C528&ssl=1)
+### Login / Signup
+![login/signup](wireframes/login-signup.png)
 
-![Another Wireframe](https://dpbnri2zg3lc2.cloudfront.net/en/wp-content/uploads/old-blog-uploads/versions/samuel-student-wireframe---x----972-715x---.png)
+### Post Blog
+![PostBlog](wireframes/post-blog-page.png)
+
+### Profile Page
+![ProfilePage](wireframes/profile-page.png)
+
+### Any Users Blog Post
+![AnyUserBlogPost](wireframes/any-user-blog-page.png)
 
 ## Contact info and other stuff
-
-Put anything else you want here!
