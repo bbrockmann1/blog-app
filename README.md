@@ -1,38 +1,83 @@
-# README
-Blog App (name TBD)
-12.13.2022
-By Robert Brockmann
+# Blog App
 
-Repo Link: https://github.com/bbrockmann1/blog-app
-Project Pitch Link: https://docs.google.com/document/d/1onLxvip6aEipQrCgoB_VmyRt_YkqCjImMiRe0Zifcn8/edit#
+Welcome to Blog App! Blog App is a full stack web application where users can sign up and write blogs. This is a full CRUD app using Rails version 
 
-Project Pitch
-This blog app will demonstrate full CRUD capabilities. Users will be able to create, edit, delete, blog posts as well as review other’s posts. The user will post a blog with associated tags. 
+## User Stories
 
-A User can…
-Be signed up and can log in/log out.
-Create, edit, and delete their own blog posts.
-Add tags to a post.
-Search for blog posts and tags.
-Review other user’s blog posts.
+* As a user, I want to be able to create an account, so I can log in and use the app.
+* As a user, I want to be able to see my user info, so etc etc etc
+* As an editor, I want to be able to do an admin thing, so I can etc etc
 
+(Have one story for each feature you plan to include—even small features are great to list here, so feel free to get granular with it. You'll probably be making a new branch for each of these, right?)
 
-Things you may want to cover:
+## Models and Relationships
 
-* Ruby version
+This is a good place for a sweet diagram:
 
-* System dependencies
+![My Data Relationships](https://support.bizzdesign.com/download/attachments/39814141/worddav928fdea0a6b423e337e8814628445af4.png)
 
-* Configuration
+### User
 
-* Database creation
+A `User` has many `Pickles`, and so on and so forth
 
-* Database initialization
+* id
+* username
+* password_digest
+* firstname
+* lastname
+* birthday
+* favorite color
 
-* How to run the test suite
+### Pickle
 
-* Services (job queues, cache servers, search engines, etc.)
+A `Pickle` belongs to a `User`, and so on 
 
-* Deployment instructions
+* id
+* variety
+* weight
+* price
+* description
 
-* ...
+## API
+
+Here's where you want to describe each API endpoint you're building/using. You can put this in your front end repo, your back end repo, or both.
+
+### GET /api/users
+
+Returns a list of all users. Response JSON looks like this:
+
+```json
+{ 
+  id: 111,
+  username: "johndoe",
+  firstname: "John",
+  lastname: "Doe",
+  etc: "etc"
+}
+```
+
+### POST /api/users
+
+Creates a new user. Say more about that here. Send this data:
+
+```json
+{ this is what it takes as data }
+```
+
+And this is what it returns:
+
+```json
+{ this is what you get back }
+```
+
+## Wireframe / Mockup
+
+Put your sweet wireframes and mockup images here. Probably only goes in the front end repo.
+
+![Wireframe](https://i2.wp.com/d1dlalugb0z2hd.cloudfront.net/handbooks/agile-handbook/wireframe/01-youtube-wireframe-example.png?resize=800%2C528&ssl=1)
+
+![Another Wireframe](https://dpbnri2zg3lc2.cloudfront.net/en/wp-content/uploads/old-blog-uploads/versions/samuel-student-wireframe---x----972-715x---.png)
+
+## Contact info and other stuff
+
+Put anything else you want here!
