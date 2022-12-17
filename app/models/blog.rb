@@ -1,4 +1,5 @@
 class Blog < ApplicationRecord
+
     #friendlyId gem for slugs
     extend FriendlyId
     friendly_id :title, use: :slugged
@@ -15,4 +16,5 @@ class Blog < ApplicationRecord
     def avg_score
         self.reviews.average(:rating).round(2).to_f
     end
+
 end

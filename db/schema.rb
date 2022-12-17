@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_16_045454) do
+ActiveRecord::Schema.define(version: 2022_12_17_033628) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,8 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_045454) do
     t.bigint "user_id"
     t.bigint "review_id"
     t.bigint "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["review_id"], name: "index_blogs_on_review_id"
     t.index ["tag_id"], name: "index_blogs_on_tag_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
@@ -44,16 +45,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_045454) do
     t.integer "rating"
     t.bigint "blog_id"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_id"], name: "index_reviews_on_blog_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,8 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_045454) do
     t.string "email"
     t.string "password_digest"
     t.string "avatar"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

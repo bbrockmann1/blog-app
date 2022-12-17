@@ -1,10 +1,8 @@
-class ApplicationController < ActionController::Base
-include ActionController::Cookies
+class ApplicationController < ActionController::API
+  include ActionController::Cookies
 
-rescue_from ActiveRecord::RecordNotFound, with: :entity_not_found_response
-rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_response
-
-skip_before_action :verify_authenticity_token
+  rescue_from ActiveRecord::RecordNotFound, with: :entity_not_found_response
+  rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_response
 
 private
 
