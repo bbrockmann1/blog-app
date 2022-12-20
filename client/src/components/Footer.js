@@ -1,11 +1,16 @@
+import { Segment } from 'semantic-ui-react'
 
 function Footer() {
 
   return (
-    <div class="ui center aligned segment">
-        © 2022 All rights reserved.
-    </div>
+    <Segment inverted padded textAlign='center' >
+        <div >
+          © 2022 All rights reserved.  
+        </div>
+    </Segment>
   );
 }
 
 export default Footer;
+
+
