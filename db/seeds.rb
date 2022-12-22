@@ -23,7 +23,7 @@ Tag.create(category: "Tech")
 Tag.create(category: "Development")
 Tag.create(category: "Gaming")
 Tag.create(category: "Auto")
-Tag.create(category: "Fashion")
+
 
 puts "seeding blogs..."
 # Seeds for posts.

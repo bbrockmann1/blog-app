@@ -25,7 +25,7 @@ export default class Navbar extends Component {
             active={activeItem === 'blogs'}
             onClick={this.handleItemClick}
             as={Link}
-            to={'/userblog'}
+            to={'/blogs'}
           />
           <Menu.Item
             name='make a new blog'
