@@ -1,5 +1,4 @@
 class Blog < ApplicationRecord
-
     #friendlyId gem for slugs
     extend FriendlyId
     friendly_id :title, use: :slugged
@@ -7,7 +6,7 @@ class Blog < ApplicationRecord
     #validates unique title
     validates :title, uniqueness: true
 
-    #accociations
+    #associations
     has_many :reviews, dependent: :destroy
     belongs_to :user
     belongs_to :tag
