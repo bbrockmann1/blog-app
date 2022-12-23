@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Button, Form, Message } from "semantic-ui-react";
 import Layout from "./Layout";
 
-class Signup extends Component {
-    render() {
+function Signup() {
+    
         return (
           <Layout header="Sign up to get started">
           <Form.Input
@@ -42,6 +42,5 @@ class Signup extends Component {
           </Message>
         </Layout>
         )
-    }
 }
 export default Signup
