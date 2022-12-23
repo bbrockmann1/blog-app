@@ -12,13 +12,22 @@ useEffect(() => {
   })
 }, [])
 
+  const blogCards = blogs.map((blog) => {
+     return <Card 
+              fluid color='black' 
+              header={blog.title} 
+              extra={`${blog.content.substring(0,300)}...`}
+              description={`Written by: ${blog.user.first_name} ${blog.user.last_name}`}
+              className={'blogCard'}
+              
+            />
+  })
+ 
+
+
     return (
   <Card.Group>
-    <Card fluid color='red' header={'Option 1'} />
-    <Card fluid color='red' header={'Option 2'} />
-    <Card fluid color='red' header={'Option 3'} />
-    <Card fluid color='red' header={'Option 4'} />
-    <Card fluid color='red' header={'Option 5'} />
+    {blogCards}
   </Card.Group>
     );
   }
