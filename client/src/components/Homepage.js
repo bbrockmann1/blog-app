@@ -1,5 +1,6 @@
 import { Card } from 'semantic-ui-react'
 import { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 
 function Homepage() {
 const [ blogs, setBlogs ] = useState([])
@@ -18,17 +19,18 @@ useEffect(() => {
               header={blog.title} 
               extra={`${blog.content.substring(0,300)}...`}
               description={`Written by: ${blog.user.first_name} ${blog.user.last_name}`}
-              className={'blogCard'}
-              
+              onclick={null}
             />
   })
  
 
 
     return (
-  <Card.Group>
-    {blogCards}
-  </Card.Group>
+      <Link to={'/selectedblog'}>
+        <Card.Group>
+          {blogCards}
+        </Card.Group>
+      </Link >
     );
   }
   
