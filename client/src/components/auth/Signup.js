@@ -4,26 +4,26 @@ import { Button, Form, Message } from "semantic-ui-react";
 import Layout from "./Layout";
 
 function Signup() {
-  const [formData, setFormData] = useState({
-    first_name: '',
-    last_name:'',
-    email: '',
-    password: '',
-    avatar: ''
-  })
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [avatar, setAvatar] = useState('')
 
   function handleSubmit(e){
+    const newUser = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      password: password,
+      avatar: avatar
+    }
     e.preventDefault();
     fetch('/users', {
       method:'POST',
       headers: {'Content-Type': 'application/json'},
-      body:JSON.stringify({...formData, ongoing:true})
+      body:JSON.stringify(newUser)
     })
-  }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
   }
     
         return (
@@ -36,10 +36,8 @@ function Signup() {
                 placeholder="First Name"
                 className="auth-input-field"
                 name='first_name'
-                value={formData.first_name}
-                onChange={handleChange}
-                as={Form.Input}
-                onSubmit={handleSubmit}
+                value={firstName}
+                onChange={e => setFirstName(e.target.value)}
               />
               <Form.Input
                 fluid
@@ -48,10 +46,8 @@ function Signup() {
                 placeholder="Last Name"
                 className="auth-input-field"
                 name='last_name'
-                value={formData.last_name}
-                onChange={handleChange}
-                as={Form.Input}
-                onSubmit={handleSubmit}
+                value={lastName}
+                onChange={e => setLastName(e.target.value)}
               />
               <Form.Input
                 fluid
@@ -60,10 +56,8 @@ function Signup() {
                 placeholder="Email"
                 className="auth-input-field"
                 name='email'
-                value={formData.email}
-                onChange={handleChange}
-                as={Form.Input}
-                onSubmit={handleSubmit}
+                value={email}
+                onChange={e => setEmail(e.target.value)}
               />
               <Form.Input
                 fluid
@@ -73,10 +67,8 @@ function Signup() {
                 type="password"
                 className="auth-input-field"
                 name='password'
-                value={formData.password}
-                onChange={handleChange}
-                as={Form.Input}
-                onSubmit={handleSubmit}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
               />
               <Form.Input 
                 fluid
@@ -86,18 +78,16 @@ function Signup() {
                 type='file'
                 className="auth-input-field"
                 name='avatar'
-                value={formData.avatar}
-                onChange={handleChange}
-                as={Form.Input}
-                onSubmit={handleSubmit}
+                value={avatar}
+                onChange={e => setAvatar(e.target.value)}
               />
-            </Form>
+           
               <Link to="/done">
-                <Button color="teal" fluid size="huge">
+                <Button color="teal" fluid size="huge" type='submit' >
                   Sign up
                 </Button>
               </Link>
-            
+             </Form>
           <Message size="big">
             <Link to="/login">Already Registered?</Link>
           </Message>
