@@ -10,13 +10,22 @@ import Done from './components/auth/Done';
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
+  const [ blogs, setBlogs ] = useState([])
+
+  useEffect(() => {
+    fetch('/blogs')
+    .then(resp => resp.json())
+    .then(blogsArray => {
+      setBlogs(blogsArray)
+    })
+  }, [])
 
   return (
     <>
       <Header />
 
         <Routes>
-          <Route path='/' element={ <Homepage/> }/>
+          <Route path='/' element={ <Homepage blogs={blogs}/> }/>
 
           <Route path='/login' element={ <Login /> }/>
 
@@ -24,7 +33,7 @@ function App() {
 
           <Route path='/blogs' element={ <UserBlogs /> }/>
 
-          <Route path='/selectedblog' element={ <SelectedBlog /> }/>
+          <Route path='/selectedblog' element={ <SelectedBlog blogs={blogs}/> }/>
 
           <Route path='/create' element={ <BlogForm /> }/>
 

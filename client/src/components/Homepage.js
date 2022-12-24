@@ -1,17 +1,7 @@
 import { Card } from 'semantic-ui-react'
-import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
-function Homepage() {
-const [ blogs, setBlogs ] = useState([])
-
-useEffect(() => {
-  fetch('/blogs')
-  .then(resp => resp.json())
-  .then(blogsArray => {
-    setBlogs(blogsArray)
-  })
-}, [])
+function Homepage({ blogs }) {
 
   const blogCards = blogs.map((blog) => {
      return <Card 
@@ -22,8 +12,6 @@ useEffect(() => {
               onclick={null}
             />
   })
- 
-
 
     return (
       <Link to={'/selectedblog'}>
