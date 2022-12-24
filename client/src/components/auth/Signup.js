@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { Button, Form, Message } from "semantic-ui-react";
 import Layout from "./Layout";
+
+
+
 
 function Signup() {
   const [firstName, setFirstName] = useState('')
@@ -9,6 +12,8 @@ function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [avatar, setAvatar] = useState('')
+  const history = useNavigate();
+
 
   function handleSubmit(e){
     const newUser = {
@@ -24,6 +29,7 @@ function Signup() {
       headers: {'Content-Type': 'application/json'},
       body:JSON.stringify(newUser)
     })
+    .then(history('/done'))
   }
     
         return (
@@ -80,13 +86,13 @@ function Signup() {
                 name='avatar'
                 value={avatar}
                 onChange={e => setAvatar(e.target.value)}
-              />
-           
-              <Link to="/done">
-                <Button color="teal" fluid size="huge" type='submit' >
-                  Sign up
-                </Button>
-              </Link>
+              />   
+                         
+              <Button color="teal" fluid size="huge" type='submit'>
+               Sign up
+              </Button>
+              
+
              </Form>
           <Message size="big">
             <Link to="/login">Already Registered?</Link>
