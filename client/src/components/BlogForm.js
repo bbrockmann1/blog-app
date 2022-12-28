@@ -1,9 +1,18 @@
+import { Form } from "semantic-ui-react";
+
 function BlogForm() {
 
     return (
-      <>
-        <h1>BlogForm</h1>
-      </>
+      <Form>
+        <Form.Field>
+          <label>Title</label>
+          <input />
+        </Form.Field>
+        <Form.Field>
+          <label>Tell your story below...</label>
+          <input />
+        </Form.Field>
+      </Form>
     );
   }
   

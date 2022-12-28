@@ -1,7 +1,6 @@
 import { Container, Header } from 'semantic-ui-react'
  
-function SelectedBlog({ blogs }) {
-  
+function SelectedBlog() {
 
   return (
     <Container text>

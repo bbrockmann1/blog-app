@@ -8,6 +8,7 @@ import SelectedBlog from './components/SelectedBlog';
 import BlogForm from './components/BlogForm';
 import Done from './components/auth/Done';
 import { Routes, Route } from 'react-router-dom'
+import { useEffect, useState } from 'react';
 
 function App() {
   const [ blogs, setBlogs ] = useState([])
@@ -33,12 +34,11 @@ function App() {
 
           <Route path='/blogs' element={ <UserBlogs /> }/>
 
-          <Route path='/selectedblog' element={ <SelectedBlog blogs={blogs}/> }/>
+          <Route path={'/blogs/:slug'} element={ <SelectedBlog /> }/>
 
           <Route path='/create' element={ <BlogForm /> }/>
 
           <Route path='/done' element={ <Done /> } />
-
         </Routes>
 
       <Footer/>
