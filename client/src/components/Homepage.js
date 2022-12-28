@@ -11,7 +11,7 @@ function Homepage({ blogs }) {
         header={blog.title} 
         extra={`${blog.content.substring(0,300)}...`}
         description={`Written by: ${blog.user.first_name} ${blog.user.last_name}`}
-        onClick={() => navigate(`/blogs/${blog.slug}`)}
+        onClick={() => navigate(`/${blog.slug}`)}
       />
     );
   });

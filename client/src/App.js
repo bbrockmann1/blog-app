@@ -34,7 +34,7 @@ function App() {
 
           <Route path='/blogs' element={ <UserBlogs /> }/>
 
-          <Route path={'/blogs/:slug'} element={ <SelectedBlog /> }/>
+          <Route path={'/:slug'} element={ <SelectedBlog /> }/>
 
           <Route path='/create' element={ <BlogForm /> }/>
 
