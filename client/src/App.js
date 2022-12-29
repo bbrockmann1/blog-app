@@ -8,10 +8,12 @@ import SelectedBlog from './components/SelectedBlog';
 import BlogForm from './components/BlogForm';
 import Done from './components/auth/Done';
 import { Routes, Route } from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { blogsAtom } from './atoms.js'
 
 function App() {
-  const [ blogs, setBlogs ] = useState([])
+  const [blogs, setBlogs] = useRecoilState(blogsAtom);
 
   useEffect(() => {
     fetch('/blogs')
