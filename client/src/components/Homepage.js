@@ -23,9 +23,7 @@ function Homepage() {
         header={blog.title} 
         extra={`${blog.content.substring(0,300)}...`}
         description={`Written by: ${blog.user.first_name} ${blog.user.last_name}`}
-        onClick={() => {
-          navigate(`/${blog.slug}`)
-        }}
+        onClick={() => navigate(`/${blog.slug}`)}
       />
     );
   });

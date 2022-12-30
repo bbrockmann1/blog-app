@@ -5,7 +5,7 @@ import { blogsAtom } from './atoms.js';
 
 function SelectedBlog() {
   const blogs = useRecoilValue(blogsAtom);
-  const { slug } = useParams(); // useParams is from the react-router-dom library
+  const { slug } = useParams(); 
 
   // Find the selected blog using the slug
   const selectedBlog = blogs.find(blog => blog.slug === slug);
@@ -14,7 +14,9 @@ function SelectedBlog() {
     <>
       <Container>
         <Header>{selectedBlog.title}</Header>
-        <h2>{`Written by: ${selectedBlog.user.first_name} ${selectedBlog.user.last_name}`}</h2>
+        <img alt={selectedBlog.user.first_name} src={selectedBlog.user.avatar} width={'200px'} height={'200px'}/>
+        <h4>{`Written by: ${selectedBlog.user.first_name} ${selectedBlog.user.last_name}`}</h4>
+        <p>{selectedBlog.content}</p>
       </Container>
     </>
   )
