@@ -8,25 +8,15 @@ import SelectedBlog from './components/SelectedBlog';
 import BlogForm from './components/BlogForm';
 import Done from './components/auth/Done';
 import { Routes, Route } from 'react-router-dom'
-import { useEffect, useState } from 'react';
 
 function App() {
-  const [ blogs, setBlogs ] = useState([])
-
-  useEffect(() => {
-    fetch('/blogs')
-    .then(resp => resp.json())
-    .then(blogsArray => {
-      setBlogs(blogsArray)
-    })
-  }, [])
 
   return (
     <>
       <Header />
 
         <Routes>
-          <Route path='/' element={ <Homepage blogs={blogs}/> }/>
+          <Route path='/' element={ <Homepage /> }/>
 
           <Route path='/login' element={ <Login /> }/>
 
@@ -34,7 +24,7 @@ function App() {
 
           <Route path='/blogs' element={ <UserBlogs /> }/>
 
-          <Route path={'/blogs/:slug'} element={ <SelectedBlog /> }/>
+          <Route path={'/:slug'} element={ <SelectedBlog /> }/>
 
           <Route path='/create' element={ <BlogForm /> }/>
 
