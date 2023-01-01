@@ -15,3 +15,17 @@ export const errorsAtom = atom({
     default: []
 });
 
+export const currentUserAtom = atom({
+    key: 'currentUser',
+    default: []
+});
+
+export const emailAtom = atom({
+    key: 'email',
+    default: ''
+})
+
+export const passwordAtom = atom({
+    key: 'password',
+    default: ''
+})

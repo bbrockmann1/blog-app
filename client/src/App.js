@@ -10,27 +10,28 @@ import Done from './components/Done';
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
-
+  
   return (
     <>
       <Header />
+        
+          <Routes>
+            <Route path='/' element={ <Homepage /> }/>
 
-        <Routes>
-          <Route path='/' element={ <Homepage /> }/>
+            <Route path='/login' element={ <Login /> }/>
 
-          <Route path='/login' element={ <Login /> }/>
+            <Route path='/signup' element={ <Signup /> } />
 
-          <Route path='/signup' element={ <Signup /> } />
+            
+            <Route path='/blogs' element={ <UserBlogs /> }/>
 
-          <Route path='/blogs' element={ <UserBlogs /> }/>
+            <Route path={'/:slug'} element={ <SelectedBlog /> }/>
 
-          <Route path={'/:slug'} element={ <SelectedBlog /> }/>
+            <Route path='/create' element={ <BlogForm /> }/>
 
-          <Route path='/create' element={ <BlogForm /> }/>
-
-          <Route path='/done' element={ <Done /> } />
-        </Routes>
-
+            <Route path='/done' element={ <Done /> } />
+          </Routes>
+        
       <Footer/>
     </>
   );

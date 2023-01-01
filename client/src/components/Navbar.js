@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { currentUserAtom, errorsAtom } from './atoms'
 
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState('home');
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom)
+  const [errors, setErrors] = useRecoilState(errorsAtom);
   
   function handleLogout(e) {
     setActiveItem(e.target.name);
     fetch('/logout', {
       method: 'DELETE'
+    })
+    .then(resp => {
+      if(resp.ok){
+        setCurrentUser([])
+        console.log(currentUser)
+      }else{
+        resp.json().then(json => {
+          setErrors(json.errors)
+          window.alert(errors)
+        })
+      }
     })
   };
 

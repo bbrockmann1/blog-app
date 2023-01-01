@@ -1,42 +1,42 @@
-import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Message } from "semantic-ui-react";
 import Layout from "./Layout";
 import { useRecoilState } from 'recoil';
-import { errorsAtom } from './atoms'
+import { currentUserAtom, errorsAtom, emailAtom, passwordAtom } from './atoms'
 
 function Login() {
   const [errors, setErrors] = useRecoilState(errorsAtom);
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom)
+  const [email, setEmail] = useRecoilState(emailAtom);
+  const [password, setPassword] = useRecoilState(passwordAtom);
   const history = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  
   function handleSubmit(e) {
     e.preventDefault();
-
+  
     const user = {
       email,
       password
     };
-
+  
     fetch('/login', {
       method: 'POST',
       headers: {'Content-Type': 'Application/json'},
       body:JSON.stringify(user)
-      })
-      .then(res => {
-        if(res.ok){
-            res.json().then(user => {
-                history(`/blogs`)
-            })
-        }else {
-            res.json().then(json => {
-              setErrors(json.errors)
-              window.alert(errors)
-            })
-        }
-    })
-    
+    }).then(resp => {
+      if(resp.ok){
+        resp.json().then(user => {
+          setCurrentUser(user)
+          console.log(currentUser)
+          history('/blogs');
+        });
+      } else {
+        resp.json().then(json => {
+          setErrors(json.errors)
+          window.alert(errors)
+        });
+      }
+    });
   };
   
   return (

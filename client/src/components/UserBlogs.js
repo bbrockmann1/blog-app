@@ -1,9 +1,11 @@
-function UserBlogs() {
+import { Card } from 'semantic-ui-react';
 
+function UserBlogs() {
+  
     return (
-      <>
-          <h1>User Blogs</h1>
-      </>
+      <Card.Group>
+        {/* {userBlogCards} */}
+      </Card.Group>
     );
   }
   

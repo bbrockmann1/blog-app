@@ -5,6 +5,7 @@ user2 = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.l
 user3 = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: Faker::Internet.password, avatar: Faker::Avatar.image)
 user4 = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: Faker::Internet.password, avatar: Faker::Avatar.image)
 user5 = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: Faker::Internet.password, avatar: Faker::Avatar.image)
+user6 = User.create(first_name: 'Robert', last_name: 'Brockmann', email: 'test', password: '1234', avatar: Faker::Avatar.image)
 
 puts "Seeding tags..."
 # Seeds for tags.
@@ -32,6 +33,7 @@ blog2 = Blog.create!(title: Faker::Book.title, content: Faker::Hipster.paragraph
 blog3 = Blog.create!(title: Faker::Book.title, content: Faker::Hipster.paragraph(sentence_count: 4), user_id: user3.id, review_id: nil, tag_id: Tag.all.sample.id)
 blog4 = Blog.create!(title: Faker::Book.title, content: Faker::Hipster.paragraph(sentence_count: 4), user_id: user4.id, review_id: nil, tag_id: Tag.all.sample.id)
 blog5 = Blog.create!(title: Faker::Book.title, content: Faker::Hipster.paragraph(sentence_count: 4), user_id: user5.id, review_id: nil, tag_id: Tag.all.sample.id)
+blog6 = Blog.create!(title: 'The Greatest Test', content: Faker::Hipster.paragraph(sentence_count: 10), user_id: user6.id, review_id: nil, tag_id: Tag.all.sample.id)
 
 puts "Seeding reviews..."
 # Seeds for reviews.
