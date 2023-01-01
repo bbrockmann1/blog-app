@@ -13,11 +13,12 @@ class UsersController < ApplicationController
 
     def create
         user = User.create!(user_params)
+        session[:user_id] = user.id
         render json: user, status: :created
     end
 
     private
-    #strong params still don't work as intended...Rails only requires password.
+    
     def user_params
         params.permit(:first_name, :last_name, :email, :password, :avatar)
     end
