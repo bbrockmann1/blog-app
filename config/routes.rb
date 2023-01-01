@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
   #routes for creating and destroying sessions/cookies
   post '/login', to: 'sessions#create'
-  destroy '/logout', to 'sessions#destroy'
+  delete '/logout', to: 'sessions#delete'
 end
