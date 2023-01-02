@@ -10,8 +10,7 @@ To run this on your locally on your machine run the following commands in the `b
 * `rails db:migrate`
 * `rails db:seed`
 
-## User Stories
-
+## Users can... 
 * Be signed up and can log in/log out.
 * Create, edit, and delete their own blog posts.
 * Add tags to a post.
