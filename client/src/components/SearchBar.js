@@ -21,7 +21,7 @@ function reducer(state, action) {
       return { ...state, value: action.selection }
 
     default:
-      throw new Error()
+      throw new Error() 
   }
 }
 
