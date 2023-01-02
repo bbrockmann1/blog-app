@@ -21,15 +21,17 @@ function Homepage() {
   const blogCards = blogs.map((blog) => {
     return (
       <Card 
-      key={blog.id}
+        key={blog.id}
         fluid color='black' 
         header={blog.title} 
         extra={`${blog.content.substring(0,300)}...`}
         description={`Written by: ${blog.user.first_name} ${blog.user.last_name}`}
+        meta={`category: ${blog.tag.category}`}
         onClick={() => navigate(`/${blog.slug}`)}
       />
     );
   });
+
 
   return (
     <Card.Group>
