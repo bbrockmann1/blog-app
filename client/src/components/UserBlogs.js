@@ -1,4 +1,4 @@
-import { Card } from 'semantic-ui-react';
+import { Card, Button } from 'semantic-ui-react';
 import { useRecoilState } from 'recoil'
 import { currentUserAtom } from './atoms.js';
 import { useEffect } from 'react';
@@ -17,13 +17,18 @@ function UserBlogs() {
 
     const userBlogCards = currentUser.blogs.map((blog) => {
       return (
-        <Card
+          <Card
           key={blog.id}
           fluid
           color='black'
           header={blog.title}
-          extra={`${blog.content.substring(0,300)}...`}
-          description={`Written by: ${currentUser.first_name} ${currentUser.last_name}`}
+          description={`${blog.content.substring(0,300)}...`}
+          extra={
+            <div>
+              <Button onClick={null}>Edit</Button>
+              <Button color='red' onClick={null}>Delete</Button>
+            </div>
+          }
         />
       );
     });
