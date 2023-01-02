@@ -3,9 +3,6 @@ import { Link, useNavigate  } from "react-router-dom";
 import { Button, Form, Message } from "semantic-ui-react";
 import Layout from "./Layout";
 
-
-
-
 function Signup() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -14,22 +11,28 @@ function Signup() {
   const [avatar, setAvatar] = useState('')
   const history = useNavigate();
 
-
   function handleSubmit(e){
+    e.preventDefault();
+    
     const newUser = {
       first_name: firstName,
       last_name: lastName,
       email: email,
       password: password,
       avatar: avatar
-    }
-    e.preventDefault();
+    };
+    
     fetch('/users', {
       method:'POST',
       headers: {'Content-Type': 'application/json'},
       body:JSON.stringify(newUser)
     })
-    .then(history('/done'))
+    .then(resp => {
+      if(resp.ok) {
+        history('/done')
+      }
+    })
+    
   }
     
         return (
