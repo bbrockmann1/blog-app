@@ -1,6 +1,7 @@
 import _ from 'lodash'
-import React, { useEffect, useState } from 'react'
-import { Search, Grid, Form, Dropdown } from 'semantic-ui-react'
+import { Search, Grid } from 'semantic-ui-react'
+import DropdownComponent from './Dropdown'
+import React from 'react'
 
 const initialState = {
   loading: false,
@@ -28,7 +29,6 @@ function SearchBar() {
 
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const { loading, results, value } = state
-  const [tags, setTags] = useState([])
 
   const timeoutRef = React.useRef()
   const handleSearchChange = React.useCallback((e, data) => {
@@ -56,18 +56,6 @@ function SearchBar() {
     }
   }, [])
 
-  useEffect(() => {
-    fetch('/tags')
-    .then(resp => resp.json())
-    .then(tagsArray => {
-      setTags(tagsArray)
-    })
-  }, [])
-
-  const dropdownOptions = tags.map(tag => ({
-    value: tag.id, key: tag.id, text: tag.category
-  }))
-
   return (
     <>
       <Grid>
@@ -84,20 +72,9 @@ function SearchBar() {
               value={value}
             />
           </Grid.Column>
-          <Form>
-            <Dropdown 
-              floating
-              selection
-              fluid
-              multiple={true}
-              placeholder='Select a Category'
-              value={tags}
-              options={dropdownOptions}
-              onChange={null}
-            />
-        </Form>
+        <DropdownComponent />  
       </Grid>
- 
+      
     </>
   )
 }
