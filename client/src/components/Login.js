@@ -6,6 +6,7 @@ import { currentUserAtom, errorsAtom, emailAtom, passwordAtom } from './atoms'
 
 function Login() {
   const [errors, setErrors] = useRecoilState(errorsAtom);
+  // eslint-disable-next-line
   const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom)
   const [email, setEmail] = useRecoilState(emailAtom);
   const [password, setPassword] = useRecoilState(passwordAtom);
@@ -27,7 +28,6 @@ function Login() {
       if(resp.ok){
         resp.json().then(user => {
           setCurrentUser(user)
-          console.log(currentUser)
           history('/blogs');
         });
       } else {

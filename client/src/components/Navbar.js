@@ -6,6 +6,7 @@ import { currentUserAtom, errorsAtom } from './atoms'
 
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState('home');
+  // eslint-disable-next-line
   const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom)
   const [errors, setErrors] = useRecoilState(errorsAtom);
   
@@ -17,7 +18,6 @@ const Navbar = () => {
     .then(resp => {
       if(resp.ok){
         setCurrentUser([])
-        console.log(currentUser)
       }else{
         resp.json().then(json => {
           setErrors(json.errors)

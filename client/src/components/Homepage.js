@@ -19,6 +19,7 @@ function Homepage() {
   const blogCards = blogs.map((blog) => {
     return (
       <Card 
+      key={blog.id}
         fluid color='black' 
         header={blog.title} 
         extra={`${blog.content.substring(0,300)}...`}

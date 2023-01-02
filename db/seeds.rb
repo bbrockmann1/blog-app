@@ -34,6 +34,7 @@ blog3 = Blog.create!(title: Faker::Book.title, content: Faker::Hipster.paragraph
 blog4 = Blog.create!(title: Faker::Book.title, content: Faker::Hipster.paragraph(sentence_count: 4), user_id: user4.id, review_id: nil, tag_id: Tag.all.sample.id)
 blog5 = Blog.create!(title: Faker::Book.title, content: Faker::Hipster.paragraph(sentence_count: 4), user_id: user5.id, review_id: nil, tag_id: Tag.all.sample.id)
 blog6 = Blog.create!(title: 'The Greatest Test', content: Faker::Hipster.paragraph(sentence_count: 10), user_id: user6.id, review_id: nil, tag_id: Tag.all.sample.id)
+blog7 = Blog.create!(title: 'Rib', content: Faker::Hipster.paragraph(sentence_count: 10), user_id: user6.id, review_id: nil, tag_id: Tag.all.sample.id)
 
 puts "Seeding reviews..."
 # Seeds for reviews.
