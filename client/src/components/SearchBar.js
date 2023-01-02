@@ -1,7 +1,10 @@
 import _ from 'lodash'
-import { Search, Grid } from 'semantic-ui-react'
-import DropdownComponent from './Dropdown'
 import React from 'react'
+import { Search, Grid } from 'semantic-ui-react'
+import { useRecoilValue } from 'recoil'
+import { blogsAtom } from './atoms'
+import DropdownComponent from './Dropdown'
+import { useNavigate } from 'react-router-dom';
 
 const initialState = {
   loading: false,
@@ -26,11 +29,13 @@ function reducer(state, action) {
 }
 
 function SearchBar() {
-
+  const navigate = useNavigate();
+  const blogs = useRecoilValue(blogsAtom);
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const { loading, results, value } = state
 
-  const timeoutRef = React.useRef()
+  const timeoutRef = React.useRef();
+
   const handleSearchChange = React.useCallback((e, data) => {
     clearTimeout(timeoutRef.current)
     dispatch({ type: 'START_SEARCH', query: data.value })
@@ -42,14 +47,14 @@ function SearchBar() {
       }
 
       const re = new RegExp(_.escapeRegExp(data.value), 'i')
-      const isMatch = (result) => re.test(result.title)
+      const isMatch = (blogs) => re.test(blogs.title)
 
       dispatch({
         type: 'FINISH_SEARCH',
-        results: _.filter(isMatch),
+        results: _.filter(blogs, isMatch),
       })
     }, 300)
-  }, [])
+  }, [blogs])
   React.useEffect(() => {
     return () => {
       clearTimeout(timeoutRef.current)
@@ -64,12 +69,14 @@ function SearchBar() {
               input={{ fluid: true }}
               loading={loading}
               placeholder='Search...'
-              onResultSelect={(e, data) =>
-                dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })
-              }
+              onResultSelect={(e, data) => {
+                dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title });
+                navigate(`/${data.result.slug}`);
+              }}
               onSearchChange={handleSearchChange}
               results={results}
               value={value}
+              onClick={null}
             />
           </Grid.Column>
         <DropdownComponent />  
