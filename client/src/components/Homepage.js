@@ -7,6 +7,7 @@ import { blogsAtom } from './atoms.js';
 function Homepage() {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useRecoilState(blogsAtom);
+  
 
   useEffect(() => {
     fetch('/blogs')
@@ -15,6 +16,7 @@ function Homepage() {
       setBlogs(blogsArray)
     })
   }, [setBlogs])
+
 
   const blogCards = blogs.map((blog) => {
     return (

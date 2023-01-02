@@ -29,3 +29,8 @@ export const passwordAtom = atom({
     key: 'password',
     default: ''
 })
+
+export const filteredBlogsAtom = atom({
+    key: 'filteredBlogs',
+    default: ''
+})
