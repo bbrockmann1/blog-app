@@ -9,6 +9,7 @@ function BlogForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tag, setTag] = useState('');
+  // eslint-disable-next-line
   const [errors, setErrors] = useState([]);
   const history = useNavigate();
 
