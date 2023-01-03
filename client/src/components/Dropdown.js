@@ -1,37 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { Dropdown, Grid } from 'semantic-ui-react'
+import { dropdownValueAtom } from './atoms';
+import { useRecoilState } from 'recoil';
 
 const DropdownComponent = () => {
-    const [value, setValue] = useState('')
-    const [tags, setTags] = useState([])
-
-    useEffect(() => {
-    fetch('/tags')
-    .then(resp => resp.json())
-    .then(tagsArray => {
-        setTags(tagsArray)
-    })
-    }, [])
-
-    const options = tags.map(tag => ({
-        key: tag.id,
-        text: tag.category,
-        value: tag.id,
-    }))
-
+    // eslint-disable-next-line
+    const [value, setValue] = useRecoilState(dropdownValueAtom)
 
     return (
-    <Grid columns={2}>
-        <Grid.Column>
-            <Dropdown
-                options={options}
-                placeholder='Search by tag'
-                selection
-                value={value}
-                onChange={e => setValue(e.target.text)}
-            />
-        </Grid.Column>
-    </Grid>
+    <>
+    <label>
+        <strong>Filter by tags:</strong>
+        <select onChange={e => setValue(e.target.value)} >
+          <option value="All">All</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Travel">Travel</option>
+          <option value="Music">Music</option>
+          <option value="DIY">DIY</option>
+          <option value="Sports">Sports</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="Finance">Finance</option>
+          <option value="Politics">Politics</option>
+          <option value="Parenting">Parenting</option>
+          <option value="Movies">Movies</option>
+          <option value="Tech">Tech</option>
+          <option value="Development">Development</option>
+          <option value="Gaming">Gaming</option>
+          <option value="Auto">Auto</option>
+        </select>
+      </label>
+    </>
     )
 }
 
