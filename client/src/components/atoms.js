@@ -34,3 +34,8 @@ export const filteredBlogsAtom = atom({
     key: 'filteredBlogs',
     default: ''
 })
+
+export const dropdownValueAtom = atom({
+    key: 'value',
+    default: 'All'
+})

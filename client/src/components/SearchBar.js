@@ -64,7 +64,7 @@ function SearchBar() {
   return (
     <>
       <Grid>
-          <Grid.Column width={13}>
+          <Grid.Column width={12}>
             <Search
               input={{ fluid: true }}
               loading={loading}
