@@ -1,13 +1,11 @@
-import { Card, Button, Header, Segment } from 'semantic-ui-react';
+import { Card, Button, Header, Segment, Form} from 'semantic-ui-react';
 import { useRecoilState } from 'recoil'
 import { currentUserAtom } from './atoms.js';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function UserBlogs() {
     const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom)
-    // eslint-disable-next-line
-    const navigate = useNavigate();
+    const [isEditing, setIsEditing] = useState(false)
 
     useEffect((e) => {
       fetch(`/users/${currentUser.id}`)
@@ -30,9 +28,10 @@ function UserBlogs() {
         // Handle error
       }
     }
-    
-    
 
+    function handleSubmit() {
+      console.log('Submitted!')
+    };
 
     const userBlogCards = currentUser.blogs
     ? currentUser.blogs.map((blog) => {
@@ -45,7 +44,7 @@ function UserBlogs() {
             description={`${blog.content.substring(0, 300)}...`}
             extra={
               <div>
-                <Button onClick={null}>Edit</Button>
+                <Button onClick={(e) => setIsEditing(!isEditing)}>Edit</Button>
                 <Button color="red" onClick={() => handleDelete(blog.id)}>
                   Delete
                 </Button>
@@ -55,14 +54,40 @@ function UserBlogs() {
         );
       })
     : <Segment><Header as='h1' >Please log in to see your blogs</Header></Segment>;
-  
-
-
 
     return (
+      
       <Card.Group>
         {userBlogCards}
+        {isEditing && (
+          <Segment>
+            <Form>
+              {<Form.Field>
+                <label>Title</label>
+                <input
+                  name="title"
+                  value={null} //control form
+                  onChange={null} //control form
+                />
+                <label>Content</label>
+                <input
+                  name="content"
+                  value={null} //control form
+                  onChange={null} //control form
+                />
+              </Form.Field>
+            }
+              <Button type="submit" 
+                onClick={() => {
+                handleSubmit();
+                setIsEditing(false);                 
+                }}>Save Changes</Button>
+              <Button onClick={() =>setIsEditing(false)}>Cancel</Button>
+            </Form>
+          </Segment>
+        )}
       </Card.Group>
+      
     );
   }
   
