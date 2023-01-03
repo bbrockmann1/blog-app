@@ -1,19 +1,22 @@
 import { Form } from "semantic-ui-react";
+import { currentUserAtom } from './atoms';
+import { useRecoilValue } from 'recoil';
 
 function BlogForm() {
-
-    return (
-      <Form>
-        <Form.Field>
-          <label>Title</label>
-          <input />
-        </Form.Field>
-        <Form.Field>
-          <label>Tell your story below...</label>
-          <input />
-        </Form.Field>
-      </Form>
-    );
+  const currentUser = useRecoilValue(currentUserAtom)
+  
+  return (
+    <Form>
+      <Form.Field>
+        <label>Title</label>
+        <input />
+      </Form.Field>
+      <Form.Field>
+        <label>Tell your story below...</label>
+        <input />
+      </Form.Field>
+    </Form>
+  );
   }
   
   export default BlogForm;
