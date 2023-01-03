@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+    wrap_parameters format: []
 
     def index
         blogs = Blog.all

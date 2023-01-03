@@ -22,6 +22,7 @@ function Signup() {
       avatar: avatar
     };
     
+    //add a post to login route and update current user when someone signs up.
     fetch('/users', {
       method:'POST',
       headers: {'Content-Type': 'application/json'},
@@ -29,7 +30,7 @@ function Signup() {
     })
     .then(resp => {
       if(resp.ok) {
-        history('/done')
+        history('/thank-you')
       }
     })
     
