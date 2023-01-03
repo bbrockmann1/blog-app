@@ -9,13 +9,29 @@ function UserBlogs() {
     // eslint-disable-next-line
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect((e) => {
       fetch(`/users/${currentUser.id}`)
       .then(resp => resp.json())
       .then(blogsArray => {
         setCurrentUser(blogsArray)
       })
     }, [setCurrentUser, currentUser.id])
+
+    async function handleDelete(id) {
+      try {
+        await fetch(`/blogs/${id}`, {
+          method: 'DELETE'
+        });
+        setCurrentUser(prevUser => ({
+          ...prevUser,
+          blogs: prevUser.blogs.filter(blog => blog.id !== id)
+        }))
+      } catch (error) {
+        // Handle error
+      }
+    }
+    
+    
 
 
     const userBlogCards = currentUser.blogs
@@ -30,7 +46,7 @@ function UserBlogs() {
             extra={
               <div>
                 <Button onClick={null}>Edit</Button>
-                <Button color="red" onClick={null}>
+                <Button color="red" onClick={() => handleDelete(blog.id)}>
                   Delete
                 </Button>
               </div>
