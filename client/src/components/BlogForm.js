@@ -32,19 +32,6 @@ function BlogForm() {
     .then(resp => {
       if(resp.ok){
         history('/posted')
-      }else{
-        resp.json().then(json => {
-          setErrors(json.errors)
-          let errorString = '';
-            for (let key in errors) {
-              errorString += `${key}: ${errors[key]}`;
-            } if (errorString === "user: must exist") {
-              window.alert("Please sign in to post a blog");
-            } else {
-              window.alert(errorString);
-            }
-          window.alert(JSON.stringify(errorString));
-        })
       }
     })
   };
