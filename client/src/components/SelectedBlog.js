@@ -17,6 +17,7 @@ function SelectedBlog() {
         <img alt={selectedBlog.user.first_name} src={selectedBlog.user.avatar} width={'200px'} height={'200px'}/>
         <h4>{`Written by: ${selectedBlog.user.first_name} ${selectedBlog.user.last_name}`}</h4>
         <p>{selectedBlog.content}</p>
+        <p>{`Category: ${selectedBlog.tag.category}`}</p>
       </Container>
     </>
   )
