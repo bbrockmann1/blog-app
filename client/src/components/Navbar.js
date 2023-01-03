@@ -42,8 +42,8 @@ const Navbar = () => {
           to={'/'}
         />
         <Menu.Item
-          name='blogs'
-          active={activeItem === 'blogs'}
+          name='my blogs'
+          active={activeItem === 'my blogs'}
           onClick={handleItemClick}
           as={Link}
           to={'/blogs'}
