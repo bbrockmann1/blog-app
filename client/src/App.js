@@ -8,6 +8,7 @@ import SelectedBlog from './components/SelectedBlog';
 import BlogForm from './components/BlogForm';
 import Done from './components/Done';
 import { Routes, Route } from 'react-router-dom'
+import ThankYou from './components/ThankYou';
 
 function App() {
   
@@ -28,7 +29,9 @@ function App() {
 
             <Route path='/create' element={ <BlogForm /> }/>
 
-            <Route path='/done' element={ <Done /> } />
+            <Route path='/thank-you' element={ <Done /> } />
+
+            <Route path='/posted' element={ <ThankYou /> } />
           </Routes>
         
       <Footer/>

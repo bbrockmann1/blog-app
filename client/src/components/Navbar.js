@@ -68,7 +68,7 @@ const Navbar = () => {
           active={activeItem === 'logout'}
           onClick={handleLogout}
           as={Link}
-          to={'/'}
+          to={'/login'}
         />
       </Menu>
     </Segment>

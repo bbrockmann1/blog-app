@@ -30,7 +30,7 @@ function Signup() {
     })
     .then(resp => {
       if(resp.ok) {
-        history('/done')
+        history('/thank-you')
       }
     })
     

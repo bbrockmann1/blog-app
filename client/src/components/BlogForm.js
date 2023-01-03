@@ -2,12 +2,15 @@ import { Form, FormField, Button } from "semantic-ui-react";
 import { currentUserAtom } from './atoms';
 import { useRecoilValue } from 'recoil';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function BlogForm() {
   const currentUser = useRecoilValue(currentUserAtom);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tag, setTag] = useState('');
+  const [errors, setErrors] = useState([]);
+  const history = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -26,6 +29,24 @@ function BlogForm() {
     };
 
     fetch('/blogs', configObject)
+    .then(resp => {
+      if(resp.ok){
+        history('/posted')
+      }else{
+        resp.json().then(json => {
+          setErrors(json.errors)
+          let errorString = '';
+            for (let key in errors) {
+              errorString += `${key}: ${errors[key]}`;
+            } if (errorString === "user: must exist") {
+              window.alert("Please sign in to post a blog");
+            } else {
+              window.alert(errorString);
+            }
+          window.alert(JSON.stringify(errorString));
+        })
+      }
+    })
   };
 
     return(
