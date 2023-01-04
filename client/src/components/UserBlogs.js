@@ -17,7 +17,7 @@ function UserBlogs() {
       .then(blogsArray => {
         setCurrentUser(blogsArray)
       })
-    }, [setCurrentUser, currentUser.id, currentUser ])
+    }, [setCurrentUser, currentUser.id, currentUser, editedTitle, editedContent])
 
     async function handleDelete(id) {
       try {
@@ -73,6 +73,8 @@ function UserBlogs() {
                 <Button onClick={(e) => {
                   setIsEditing(!isEditing)
                   setBlogID(blog)
+                  setEditedTitle(blog.title)
+                  setEditedContent(blog.content)
                   }}>Edit</Button>
                 <Button color="red" onClick={() => handleDelete(blog.id)}>
                   Delete
