@@ -59,20 +59,21 @@ function BlogForm() {
       <label>
           <strong>Add a tag...</strong>
           <select onChange={e => setTag(e.target.value)} >
-            <option value="1">Fashion</option>
-            <option value="2">Travel</option>
-            <option value="3">Music</option>
-            <option value="4">DIY</option>
-            <option value="5">Sports</option>
-            <option value="6">Lifestyle</option>
-            <option value="7">Finance</option>
-            <option value="8">Politics</option>
-            <option value="9">Parenting</option>
-            <option value="10">Movies</option>
-            <option value="11">Tech</option>
-            <option value="12">Development</option>
-            <option value="13">Gaming</option>
-            <option value="14">Auto</option>
+            <option>Add a tag</option>
+            <option value="0">Fashion</option>
+            <option value="1">Travel</option>
+            <option value="2">Music</option>
+            <option value="3">DIY</option>
+            <option value="4">Sports</option>
+            <option value="5">Lifestyle</option>
+            <option value="6">Finance</option>
+            <option value="7">Politics</option>
+            <option value="8">Parenting</option>
+            <option value="9">Movies</option>
+            <option value="10">Tech</option>
+            <option value="11">Development</option>
+            <option value="12">Gaming</option>
+            <option value="13">Auto</option>
           </select>
         </label>
         <Button type="submit">Submit</Button>

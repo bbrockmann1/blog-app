@@ -17,7 +17,7 @@ function UserBlogs() {
       .then(blogsArray => {
         setCurrentUser(blogsArray)
       })
-    }, [setCurrentUser, currentUser.id, currentUser, editedTitle, editedContent])
+    }, [setCurrentUser, currentUser.id, editedTitle, editedContent])
 
     async function handleDelete(id) {
       try {
@@ -33,28 +33,28 @@ function UserBlogs() {
       }
     }
 
-    function handleSubmit(id) {
+    async function handleSubmit(id) {
       const editedBlog = {
         title: editedTitle,
         content: editedContent
       };
-  
-      fetch(`/blogs/${id.id}`, {
-        method:'PATCH',
-        headers: {'Content-Type': 'application/json'},
-        body:JSON.stringify(editedBlog)
-      })
-      .then(response => response.json())
-      .then(updatedBlog => {
+    
+      try {
+        const updatedBlog = await fetch(`/blogs/${id.id}`, {
+          method:'PATCH',
+          headers: {'Content-Type': 'application/json'},
+          body:JSON.stringify(editedBlog)
+        }).then(response => response.json());
+    
         setCurrentUser(prevUser => ({
           ...prevUser,
-          blogs: prevUser.blogs.map(blog => blog.id === id ? updatedBlog : blog)
-        }))
-      })
-      .catch(error => {
+          blogs: prevUser.blogs.map(blog => blog.id === updatedBlog.id ? updatedBlog : blog)
+        }));
+      } catch (error) {
         // Handle error
-      });
+      }
     }
+    
     
     
 
