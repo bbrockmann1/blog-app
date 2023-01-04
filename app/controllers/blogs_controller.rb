@@ -30,7 +30,7 @@ class BlogsController < ApplicationController
 
     private
 
-    #strong params still don't work as intended...Rails only requires tag and user ids.
+    
     def blog_params
         params.permit(:title, :content, :user_id, :tag_id)
     end

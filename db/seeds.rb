@@ -39,7 +39,7 @@ blog7 = Blog.create!(title: 'The McRib is Back', content: Faker::Hipster.paragra
 puts "Seeding reviews..."
 # Seeds for reviews.
 review1 = Review.create!(comment: Faker::Hipster.sentence, rating: rand(1..5), blog_id: blog1.id, user_id: user1.id)
-review2 = Review.create!(comment: Faker::Hipster.sentence, rating: rand(1..5), blog_id: blog2.id, user_id: user2.id)
+review2 = Review.create!(comment: Faker::Hipster.sentence, rating: rand(1..5), blog_id: blog1.id, user_id: user2.id)
 review3 = Review.create!(comment: Faker::Hipster.sentence, rating: rand(1..5), blog_id: blog3.id, user_id: user3.id)
 review4 = Review.create!(comment: Faker::Hipster.sentence, rating: rand(1..5), blog_id: blog4.id, user_id: user4.id)
 review5 = Review.create!(comment: Faker::Hipster.sentence, rating: rand(1..5), blog_id: blog5.id, user_id: user5.id)
