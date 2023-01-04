@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    wrap_parameters format: []
 
     def index 
         reviews = Review.all
@@ -17,7 +18,6 @@ class ReviewsController < ApplicationController
 
     private
     
-    #strong params still don't work as intended...Rails only requires blog and user ids.
     def review_params
         params.permit(:comment, :rating, :blog_id, :user_id)
     end
