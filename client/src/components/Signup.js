@@ -21,6 +21,11 @@ function Signup() {
       password: password,
       avatar: avatar
     };
+
+    const user = {
+      email,
+      password
+    };
     
     //add a post to login route and update current user when someone signs up.
     fetch('/users', {
@@ -34,6 +39,22 @@ function Signup() {
       }
     })
     
+    fetch('/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'Application/json'},
+      body:JSON.stringify(user)
+    }).then(resp => {
+      if(resp.ok){
+        resp.json().then(user => {
+          setCurrentUser(user)
+        });
+      } else {
+        resp.json().then(json => {
+          setErrors(json.errors)
+          window.alert(errors)
+        });
+      }
+    });
   }
     
         return (
